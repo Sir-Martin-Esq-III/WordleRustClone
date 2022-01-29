@@ -1,0 +1,42 @@
+.words-container {
+  display: grid;
+  grid-template-rows: repeat(6, 1fr);
+  grid-gap: 5px;
+  padding: 10px;
+  box-sizing: border-box;
+
+  .word-row-container {
+    display: grid;
+    grid-template-columns: repeat(5, 4rem);
+    width: 100%;
+    justify-content: space-evenly;
+
+    .letter-container {
+      width: 3.5rem;
+      height: 3.5rem;
+      border: 2px solid #3a3a3c;
+      color: white;
+      background-color: #538d4f;
+      display: grid;
+      place-items: center;
+      .letter {
+        font-size: 2rem;
+        padding: 0;
+        margin: 0;
+      }
+    }
+  }
+}
+h1 {
+  color: white;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+body {
+  background-color: #121213;
+}
