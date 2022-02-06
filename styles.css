@@ -24,17 +24,35 @@
   width: 3.5rem;
   height: 3.5rem;
   border: 2px solid #3a3a3c;
-  color: white;
   background-color: transparent;
+}
+
+.words-container .word-row-container .letter-container-correct {
+  width: 3.5rem;
+  height: 3.5rem;
+  border: 2px solid #3a3a3c;
+  background-color: #538d4e;
+}
+
+.words-container .word-row-container .letter-container-incorrect {
+  width: 3.5rem;
+  height: 3.5rem;
+  border: 2px solid #3a3a3c;
+  width: 3.5rem;
+  height: 3.5rem;
+  border: 2px solid #3a3a3c;
+  background-color: #b59f3b;
+}
+
+.words-container .word-row-container * > .letter {
   display: -ms-grid;
   display: grid;
   place-items: center;
-}
-
-.words-container .word-row-container .letter-container .letter {
+  color: white;
   font-size: 2rem;
   padding: 0;
   margin: 0;
+  height: 100%;
 }
 
 h1 {

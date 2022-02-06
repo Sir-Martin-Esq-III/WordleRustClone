@@ -22,7 +22,7 @@ pub struct AppProps {
 
 #[function_component(App)]
 fn app() -> Html {
-    let row_index = 0;
+    let row_index = use_state(|| 0);
     let won = use_state(|| false);
     let mut current_guess = use_state(|| "".to_string());
     let grid_state = use_state(|| vec!["     ".to_string(); 6]);
@@ -35,14 +35,27 @@ fn app() -> Html {
         })
     };
 
-    let onclick = {
+    // let onclick = {
+    //     let current_guess = current_guess.clone();
+    //     let grid_state = grid_state.clone();
+
+    //     Callback::from(move |e: MouseEvent| {
+    //         let l = current_guess.to_string();
+    //         let mut t = grid_state.clone().to_vec();
+    //         t[row_index] = l;
+    //         grid_state.set(t);
+    //     })
+    // };
+
+    let handleguess = {
         let current_guess = current_guess.clone();
         let grid_state = grid_state.clone();
-
+        let row_index = row_index.clone();
         Callback::from(move |e: MouseEvent| {
             let l = current_guess.to_string();
             let mut t = grid_state.clone().to_vec();
-            t[row_index] = l;
+            t[*row_index] = l;
+            row_index.set(*row_index + 1);
             grid_state.set(t);
         })
     };
@@ -63,7 +76,8 @@ fn app() -> Html {
                 <input {oninput} type="text" minlength="5" maxlength="5"  value={{(*current_guess).clone()}}/>
                 <h1>{{(*current_guess).clone()}}</h1>
 
-                <button {onclick} type="button"> {"Press to guess"} </button>
+                <button onclick={handleguess} type="button"> {"Press to guess"} </button>
+                // <button onclick={handleguess} type="button"> {"Press to increase row"} </button>
             </div>
 
         </div>
