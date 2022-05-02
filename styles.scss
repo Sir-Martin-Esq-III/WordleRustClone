@@ -19,19 +19,36 @@
     .letter-container {
       @include base_grid;
       background-color: transparent;
+      &-correct,&-incorrect,&-incorrectPos{
+        // how?
+        @for $i from 0 to 30 {
+          &:nth-child(#{$i}){
+            animation-delay: $i*50ms;
+
+          }
+          animation: test 0.5s ease-in forwards;
+      }
+    }
+      
+      
       &-correct {
         @include base_grid;
 
-        animation: test 0.5s ease-in forwards;
-        @for $i from 0 through 30{
-        &:nth-child(#{$i}){
-          animation-delay: $i*0.5s;
-        }
-      }
+        // animation: test 0.5s ease-in forwards;
+
         background-color: #538d4e;
       }
+
       &-incorrect {
         @include base_grid;
+        width: 3.5rem;
+        height: 3.5rem;
+        border: 2px solid #3a3a3c;
+        background-color: #787c7e;
+      }
+      &-incorrectPos {
+        @include base_grid;
+        // animation: test 0.5s ease-in forwards;
         width: 3.5rem;
         height: 3.5rem;
         border: 2px solid #3a3a3c;
@@ -60,24 +77,54 @@ h1 {
 }
 
 body {
+  margin: 0;
+  padding: 0;
   background-color: #121213;
 }
 
+.modal{
+  body{
+    overflow: hidden;
+  }
+  animation: fadein 1 forwards 1s forwards;
+  position: absolute;
+  display: grid;
+  backdrop-filter: blur(15px);
+  place-items: center;
+width: 100%;
+height: 100%;
+  .content{
+    display: flex;
+    flex-direction: column;
+    border-radius: 20px;
+    align-items: center;
+    width: 50%;
+    height: 25%;
+    background-color:#787c7e ;
+  }
+}
 
-// @keyframes test {
-//  0%{
-//    color: transparent;
-//    transform: translate(1);
-//  }
-//  50%{
+
+@keyframes test {
+ 0%{
+   color: transparent;
+   transform: scaleY(1);
+ }
+ 50%{
   
-//     color: transparent;
-//   transform: scaleX(-0);}
+    color: transparent;
+  transform: scaleY(-0);}
 
-//  100%{  
-//   color: white;
-//   transform: scale(1);
-// }
-
-  
-// }
+ 100%{  
+  color: white;
+  transform: scaleY(1);
+} 
+}
+@keyframes fadein{
+  0%{
+    opacity: 0;
+  }
+  100%{
+    opacity: 1;
+  }
+}
